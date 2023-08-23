@@ -40,4 +40,4 @@ deepspeed main.py \
    --lora_dim 128 \
    --lora_module_name decoder.layers. \
    --deepspeed \
-   --output_dir $OUTPUT 
+   --output_dir $OUTPUT >$OUTPUT/info.log
