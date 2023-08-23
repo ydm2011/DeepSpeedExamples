@@ -7,10 +7,10 @@
 # Note that usually LoRA needs to use larger learning rate
 OUTPUT=$1
 ZERO_STAGE=$2
-if [ "$OUTPUT" = "" ]; then
+if [ "$OUTPUT" == "" ]; then
     OUTPUT=./output
 fi
-if [ "$ZERO_STAGE" = "" ]; then
+if [ "$ZERO_STAGE" == "" ]; then
     ZERO_STAGE=0
 fi
 mkdir -p $OUTPUT
