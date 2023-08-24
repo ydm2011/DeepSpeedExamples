@@ -5,13 +5,17 @@
 # DeepSpeed Team
 
 # Note that usually LoRA needs to use larger learning rate
-OUTPUT=$1
-ZERO_STAGE=$2
+ZERO_STAGE=$1
+MODEL_NAME=$2
+OUTPUT=$3
 if [ "$OUTPUT" = "" ]; then
-    OUTPUT=/data/log
+  OUTPUT=/data/log/
 fi
 if [ "$ZERO_STAGE" = "" ]; then
     ZERO_STAGE=0
+fi
+if [ "$MODEL_NAME" = ""]; then
+  MODEL_NAME=facebook/opt-1.3b
 fi
 mkdir -p $OUTPUT
 
@@ -24,7 +28,7 @@ deepspeed main.py \
    --data_path Dahoas/rm-static Dahoas/full-hh-rlhf Dahoas/synthetic-instruct-gptj-pairwise yitingxie/rlhf-reward-datasets \
    --data_split 2,4,4 \
    --offload  \
-   --model_name_or_path facebook/opt-1.3b \
+   --model_name_or_path $MODEL_NAME \
    --per_device_train_batch_size 2 \
    --per_device_eval_batch_size 2 \
    --max_seq_len 512 \
